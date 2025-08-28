@@ -1,0 +1,23 @@
+let lowerVowels = ('a', 'e', 'i', 'o', 'u')
+and
+    upperVowels = ('A', 'E', 'I', 'O', 'U')
+in
+let isAVowel c = isAVowelRec (c, 5)
+    where rec isAVowelRec (c, i) =
+        i eq 0 -> false
+        | (c eq (lowerVowels i)) or (c eq (upperVowels i)) -> true
+        | isAVowelRec (c, (i - 1))
+in
+let rec VHorCHRec origStr curStr vcount ccount =
+    curStr eq '' ->
+        vcount > ccount ->
+            ('"' @Conc origStr @Conc '"' @Conc ' is a Vowel Heavy String')
+        | vcount < ccount ->
+            ('"' @Conc origStr @Conc '"' @Conc ' is a Consonant Heavy String')
+        | ('"' @Conc origStr @Conc '"' @Conc ' is a Vowel-Consonant Equal String')
+    | isAVowel (Stem curStr) -> VHorCHRec origStr (Stern curStr) (vcount + 1) ccount
+    | VHorCHRec origStr (Stern curStr) vcount (ccount + 1)
+within
+    VHorCH = fn s. not (Isstring s) -> 'Invalid Input' | VHorCHRec s s 0 0
+in
+Print (VHorCH 'EurO', VHorCH 'PAsaN', VHorCH '1ekuAq1i', VHorCH (-26))
